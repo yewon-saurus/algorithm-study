@@ -1,9 +1,5 @@
-const fs = require("fs");
-const file = process.platform === "linux" ? "dev/stdin" : "./text.txt";
-const input = fs.readFileSync(file).toString().trim().split(" ");
-
-const a = Number(input[0]);
-const b = Number(input[1]);
-const c = Number(input[2]);
+const fs = require('fs');
+const [a, b, c] = fs.readFileSync("./dev/stdin").toString().split(" ").map(item => + item);
+// const [a, b, c] = fs.readFileSync("./test.txt").toString().split(" ").map(item => + item);
 
 console.log(a + b + c);
