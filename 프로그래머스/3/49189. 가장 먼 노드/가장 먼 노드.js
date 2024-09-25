@@ -14,12 +14,13 @@ function solution(n, edge) {
     let distance = new Array(n + 1).fill(0);
     distance[1] = 1;
     
-    let queue = [1];
-    while (queue.length > 0) {
-        const cur = queue.shift();
+    let queue = new Queue();
+    queue.enqueue(1);
+    while (!queue.isEmpty()) {
+        const cur = queue.dequeue();
         for (const breadth of graph[cur]) {
             if (distance[breadth] === 0) {
-                queue.push(breadth);
+                queue.enqueue(breadth);
                 distance[breadth] = distance[cur] + 1;
             }
         }
@@ -27,4 +28,24 @@ function solution(n, edge) {
     
     const max = Math.max(...distance);
     return distance.filter((item) => item === max).length;
+}
+
+class Queue {
+    constructor() {
+        this.queue = [];
+        this.front = 0;
+        this.rear = 0;
+    }
+    
+    isEmpty() {
+        return this.front === this.rear;
+    }
+    
+    enqueue(value) {
+        this.queue[this.rear++] = value;
+    }
+    
+    dequeue() {
+        return this.queue[this.front++];
+    }
 }
