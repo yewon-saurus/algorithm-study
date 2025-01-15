@@ -14,6 +14,7 @@ function solution(l, r) {
         tree[left] = tree[cur] * 10;
         tree[right] = tree[cur] * 10 + 5;
     }
+    tree = tree.filter(ele => ele >= l && ele <= r);
     
-    return tree.filter(ele => ele >= l && ele <= r).length === 0 ? [-1] : tree.filter(ele => ele >= l && ele <= r);
+    return tree.length === 0 ? [-1] : tree;
 }
