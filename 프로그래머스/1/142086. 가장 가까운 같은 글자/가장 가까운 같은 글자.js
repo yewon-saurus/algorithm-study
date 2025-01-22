@@ -2,8 +2,8 @@ function solution(s) {
     const map = new Map();
     const answer = [];
     
-    [null, ...s].forEach((ele, idx) => {
-        if (map.get(ele)) {
+    [...s].forEach((ele, idx) => {
+        if (map.get(ele) !== undefined) {
             answer.push(idx - map.get(ele));
             map.set(ele, idx);
         }
@@ -13,6 +13,5 @@ function solution(s) {
         }
     });
     
-    console.log(map);
-    return answer.slice(1);
+    return answer;
 }
