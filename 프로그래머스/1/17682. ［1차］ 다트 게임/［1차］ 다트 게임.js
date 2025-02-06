@@ -1,6 +1,6 @@
 function solution(dartResult) {
     let parsed = [];
-    let result = [];
+    let result = []; // 구간 합 결과 저장
     
     for (let i = 0; i < dartResult.length; i++) {
         if (dartResult[i] == 1 && dartResult[i + 1] == 0) {
@@ -13,7 +13,7 @@ function solution(dartResult) {
         else parsed.push(dartResult[i]);
     }
     
-    for (let i = 0; i < parsed.length - 1; i += 2) {
+    for (let i = 0; i < parsed.length; i += 2) {
         if (parsed[i + 2] === '*') {
             result.push(parsed[i] ** parsed[i + 1] * 2);
             if (result.length > 1) {
@@ -26,8 +26,6 @@ function solution(dartResult) {
             i += 1;
         }
         else result.push(parsed[i] ** parsed[i + 1]);
-        
-        console.log(result, parsed[i], parsed[i + 1], parsed[i + 2]);
     }
     
     return result.reduce((acc, cur) => acc + cur, 0);
