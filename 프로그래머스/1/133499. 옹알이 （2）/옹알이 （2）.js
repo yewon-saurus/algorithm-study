@@ -1,16 +1,8 @@
-const joka = ['aya', 'ye', 'woo', 'ma'];
-
 function solution(babbling) {
-    let answer = 0;
+    const regexp1 = /(aya|ye|woo|ma)\1+/;
+    const regexp2 = /^(aya|ye|woo|ma)+$/;
     
-    for (let bab of babbling) {
-        for (const ele of joka) {
-            if (bab.includes(ele.repeat(2))) break;
-            bab = bab.split(ele).join(' ');
-        };
-        
-        if (bab.split(' ').join('').length === 0) answer += 1;
-    };
-    
-    return answer;
+    return babbling.reduce((answer, cur) => {
+        return !regexp1.test(cur) && regexp2.test(cur) ? answer + 1 : answer;
+    }, 0);
 }
