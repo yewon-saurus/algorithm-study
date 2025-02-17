@@ -12,17 +12,10 @@ function solution(survey, choices) {
         table[selected] = table[selected] + score;
     });
     
-    if (table['R'] >= table['T']) answer.push('R');
-    else answer.push('T');
-    
-    if (table['C'] >= table['F']) answer.push('C');
-    else answer.push('F');
-    
-    if (table['J'] >= table['M']) answer.push('J');
-    else answer.push('M');
-    
-    if (table['A'] >= table['N']) answer.push('A');
-    else answer.push('N');
+    answer.push(table['R'] >= table['T'] ? 'R' : 'T');
+    answer.push(table['C'] >= table['F'] ? 'C' : 'F');
+    answer.push(table['J'] >= table['M'] ? 'J' : 'M');
+    answer.push(table['A'] >= table['N'] ? 'A' : 'N');
     
     return answer.join('');
 }
