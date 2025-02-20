@@ -36,8 +36,6 @@ function solution(n, lost, reserve) {
             
             ++start;
         }
-        
-        console.log(start, end, students);
     }
 
     return students.filter(ele => ele > 0).length;
