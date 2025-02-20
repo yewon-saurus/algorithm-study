@@ -1,50 +1,53 @@
-const keypad = [
-    [3, 1], // 0
-    [0, 0], [0, 1], [0, 2],
-    [1, 0], [1, 1], [1, 2],
-    [2, 0], [2, 1], [2, 2],
-    [3, 0], [3, 2], // *, #
-];
-
 function solution(numbers, hand) {
     let answer = [];
     let lHand = 10;
     let rHand = 11;
     
-    numbers.forEach((ele) => {
-        if (ele === 1 || ele === 4 || ele === 7) {
-            lHand = ele;
+    numbers.forEach((target) => {
+        if (target === 1 || target === 4 || target === 7) {
+            lHand = target;
             answer.push('L');
         }
-        else if (ele === 3 || ele === 6 || ele === 9) {
-            rHand = ele;
+        else if (target === 3 || target === 6 || target === 9) {
+            rHand = target;
             answer.push('R');
         }
         else {
-            const [targetX, targetY] = keypad[ele];
-            const [lX, lY] = keypad[lHand];
-            const [rX, rY] = keypad[rHand];
-            
-            if (Math.abs(targetX - lX) + Math.abs(targetY - lY) === Math.abs(targetX - rX) + Math.abs(targetY - rY)) {
+            if (calcDistance(target, lHand) === calcDistance(target, rHand)) {
                 if (hand === 'left') {
-                    lHand = ele;
+                    lHand = target;
                     answer.push('L');
                 }
                 else {
-                    rHand = ele;
+                    rHand = target;
                     answer.push('R');
                 }
             }
-            else if (Math.abs(targetX - lX) + Math.abs(targetY - lY) < Math.abs(targetX - rX) + Math.abs(targetY - rY)) {
-                lHand = ele;
+            else if (calcDistance(target, lHand) < calcDistance(target, rHand)) {
+                lHand = target;
                 answer.push('L');
             }
             else {
-                rHand = ele;
+                rHand = target;
                 answer.push('R');
             }
         }
     });
     
     return answer.join('');
+}
+
+const calcDistance = (a, b) => {
+    const keypad = [
+        [3, 1], // 0
+        [0, 0], [0, 1], [0, 2],
+        [1, 0], [1, 1], [1, 2],
+        [2, 0], [2, 1], [2, 2],
+        [3, 0], [3, 2], // *, #
+    ];
+    
+    const [X1, Y1] = keypad[a];
+    const [X2, Y2] = keypad[b];
+    
+    return Math.abs(X1 - X2) + Math.abs(Y1 - Y2);
 }
