@@ -1,15 +1,17 @@
 function solution(n) {
-    var sumArr = [0];
-    var answer = 0;
-    var [l, r] = [0, 1];
+    let sumArr = [0];
+    let answer = 0;
+    let [l, r] = [0, 1];
     
-    for (var i = 1; i <= n; i++) {
+    for (let i = 1; i <= n; i++) {
         sumArr.push(sumArr[sumArr.length - 1] + i);
     }
     
-    while (l < r && l <= n && r <= n) {
-        if (sumArr[r] - sumArr[l] > n) l++;
-        else if (sumArr[r] - sumArr[l] < n) r++;
+    while (l <= n && r <= n) {
+        const sub = sumArr[r] - sumArr[l]; // 중복 연산 방지
+        
+        if (sub > n) l++;
+        else if (sub < n) r++;
         else {
             answer++;
             l++;
