@@ -12,7 +12,8 @@ function convertTo124(n) {
     
     while (n > 0) {
         result = [convertTable[n % 3], ...result];
-        n = Math.floor((n - 1) / 3);
+        n = n % 3 === 0 ? n - 1 : n;
+        n = Math.floor(n / 3);
     }
     
     return result.join('');
