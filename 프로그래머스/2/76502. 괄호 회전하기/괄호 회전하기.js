@@ -1,3 +1,9 @@
+const match = {
+    ']': '[',
+    '}': '{',
+    ')': '(',
+}
+
 function solution(s) {
     let answer = 0;
     let stack = [];
@@ -7,15 +13,7 @@ function solution(s) {
         while (sCopy.length > 0) {
             const target = sCopy.shift();
             
-            if (target === ']' && stack[stack.length - 1] === '[') {
-                stack.pop();
-            }
-            else if (target === '}' && stack[stack.length - 1] === '{') {
-                stack.pop();
-            }
-            else if (target === ')' && stack[stack.length - 1] === '(') {
-                stack.pop();
-            }
+            if (match[target] && match[target] === stack[stack.length - 1]) stack.pop();
             else stack.push(target);
         }
         
