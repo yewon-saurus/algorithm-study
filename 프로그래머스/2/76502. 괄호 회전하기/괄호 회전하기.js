@@ -9,9 +9,9 @@ function solution(s) {
     let stack = [];
     
     for (let i = 0; i < s.length; i++) {
-        const sCopy = [...s];
-        while (sCopy.length > 0) {
-            const target = sCopy.shift();
+        const sCopy = new Queue(s); // Queue 구현
+        while (sCopy.size() > 0) {
+            const target = sCopy.dequeue();
             
             if (match[target] && match[target] === stack[stack.length - 1]) stack.pop();
             else stack.push(target);
@@ -24,4 +24,28 @@ function solution(s) {
     }
     
     return answer;
+}
+
+class Queue {
+    constructor(str) {
+        this.queue = [...str];
+        this.head = 0;
+        this.tail = str.length - 1;
+    }
+    
+    enqueue(value) {
+        this.queue.push(value);
+        this.tail += 1;
+    }
+    
+    dequeue() {
+        const returnValue = this.queue[this.head];
+        this.head += 1;
+        
+        return returnValue;
+    }
+    
+    size() {
+        return this.tail - this.head + 1;
+    }
 }
