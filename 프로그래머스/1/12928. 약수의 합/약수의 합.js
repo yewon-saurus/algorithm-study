@@ -1,9 +1,3 @@
 function solution(n) {
-    let answer = [];
-    
-    for (let i = 1; i <= n; i++) {
-        if (n % i === 0) answer.push(i);
-    }
-    
-    return answer.reduce((acc, cur) => acc + cur, 0);
+    return Array.from(new Array(n), (_, idx) => idx + 1).filter(f => n % f === 0).reduce((acc, cur) => acc + cur, 0);
 }
