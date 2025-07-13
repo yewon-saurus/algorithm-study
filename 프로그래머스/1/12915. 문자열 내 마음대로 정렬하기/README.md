@@ -1,10 +1,10 @@
 # [level 1] 문자열 내 마음대로 정렬하기 - 12915 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12915) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12915?language=javascript) 
 
 ### 성능 요약
 
-메모리: 10 MB, 시간: 0.02 ms
+메모리: 36.1 MB, 시간: 564.08 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 03월 25일 21:49:26
+2025년 07월 13일 16:48:08
 
 ### 문제 설명
 
