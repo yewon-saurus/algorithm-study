@@ -2,46 +2,8 @@ const fs = require('fs');
 const filePath = fs.existsSync('./test.txt') ? './test.txt' : '/dev/stdin';
 let [N, ...cmds] = fs.readFileSync(filePath).toString().trim().split("\n");
 
-class Queue {
-    constructor() {
-        this.queue = [];
-        this.front = 0;
-        this.back = 0;
-    }
-
-    push(x) {
-        this.queue.push(x);
-        this.back += 1;
-    }
-
-    pop() {
-        if (this.empty()) return -1;
-
-        const returnValue = this.queue[this.front];
-        delete this.queue[this.front];
-        this.front += 1;
-        return returnValue;
-    }
-
-    size() {
-        return this.back- this.front;
-    }
-
-    empty() {
-        return this.front === this.back ? 1 : 0;
-    }
-
-    getFront() {
-        return this.empty() ? -1 : this.queue[this.front];
-    }
-
-    getBack() {
-        return this.empty() ? -1 : this.queue[this.back - 1];
-    }
-}
-
-let queue = new Queue();
 let answer = [];
+let queue = [];
 
 for (let i = 0; i < N; i++) {
     const [c, num] = cmds[i].split(' ');
@@ -51,19 +13,19 @@ for (let i = 0; i < N; i++) {
             queue.push(num);
             break;
         case "pop":
-            answer.push(queue.pop());
+            answer.push(queue.length > 0 ? queue.shift() : -1);
             break;
         case "size":
-            answer.push(queue.size());
+            answer.push(queue.length);
             break;
         case "empty":
-            answer.push(queue.empty());
+            answer.push(queue.length === 0 ? 1 : 0);
             break;
         case "front":
-            answer.push(queue.getFront());
+            answer.push(queue.length > 0 ? queue[0] : -1);
             break;
         case "back":
-            answer.push(queue.getBack());
+            answer.push(queue.length > 0 ? queue[queue.length - 1] : -1);
             break;
         default:
     }
