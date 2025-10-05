@@ -21,19 +21,22 @@ while (true) {
         answer += 1;
 
         const [tdy, tdx] = DIR[answer % 4];
-        const ty = y + tdy;
-        const tx = x + tdx;
+        const [ty, tx] = [y + tdy, x + tdx];
 
-        if (ty < 0 || ty >= M || tx < 0 || tx >= N || table[ty][tx] !== 0) {
+        if (
+            ty < 0 || ty >= M ||
+            tx < 0 || tx >= N ||
+            table[ty][tx] !== 0
+        ) {
             answer -= 1;
             break;
         }
-        continue;
     }
-
-    y = ny;
-    x = nx;
-    table[y][x] = 1;
+    else {
+        y = ny;
+        x = nx;
+        table[y][x] = 1;
+    }
 }
 
 console.log(answer);
